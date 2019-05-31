@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>NULL</title>
+
+	<style type="text/css">
+	input{
+		border-radius: .5em;
+	}
+	span{
+		color: red;
+		font-size: 1.25em;
+	}
+	.none{
+		display: none;
+	}
+	</style>
+
+	<script>
+
+		function validar() {
+			try{
+				var num = document.getElementById('txtnum').value;
+
+				var spn = document.getElementById('spn');
+				if(num == ''){
+					spn.classList.remove('none');
+					document.getElementById('txtnum').style.background = 'rgba(255, 0, 0, .5)';
+					document.getElementById('txtnum').placeholder = 'Obrigatório...';
+					throw 'Campo Obrigatório';
+				}
+				else if(isNaN(num)){
+					spn.classList.remove('none');
+					document.getElementById('txtnum').style.background = 'rgba(255, 0, 0, .5)';
+					document.getElementById('txtnum').value = '';
+					document.getElementById('txtnum').placeholder = 'Apenas números...';
+					throw 'Apenas número';
+				}
+				else if(num > 100){
+					spn.classList.remove('none');
+					document.getElementById('txtnum').style.background = 'rgba(255, 0, 0, .5)';
+					document.getElementById('txtnum').value = '';
+					document.getElementById('txtnum').placeholder = 'Nº > 100...!!';
+					throw 'Nº não pode ser maior que 100...';
+				}
+				else if(num < 0){
+					spn.classList.remove('none');
+					document.getElementById('txtnum').style.background = 'rgba(255, 0, 0, .5)';
+					document.getElementById('txtnum').value = '';
+					document.getElementById('txtnum').placeholder = 'Nº < 0...!!';
+					throw 'Nº não pode ser menor que 0...';
+				}
+				if(document.getElementById('txtsenha').value.length < 6 || document.getElementById('txtsenha').value.length > 8){
+					document.getElementById('txtsenha').style.background = 'rgba(255, 0, 0, .5)';
+					document.getElementById('txtsenha').value = '';
+					document.getElementById('txtsenha').placeholder = 'Tamanho inválido!!';
+
+					throw 'A senha não pode conter menos que 6 caracteres ou mais que 8 caracteres';
+				}
+
+				spn.classList.add('none');
+				document.getElementById('txtnum').style.background = 'rgba(0, 255, 0, .5)';
+				document.getElementById('txtsenha').style.background = 'rgba(0, 255, 0, .5)';
+			}
+			catch(erro){
+				alert('Ocorreu um erro: ' + erro);
+			}
+		}
+
+	</script>
+
+</head>
+		
+	<p>
+		<label>Número</label><br>
+		<input type="text" id="txtnum"><span id="spn" class="none"> *</span>
+	</p>
+	<p>
+		<label>Senha</label><br>
+		<input type="password" id="txtsenha"><span id="spn" class="none"> *</span>
+	</p>
+	<p>
+		<input type="submit" onclick="validar()">
+	</p>
+
+<body>
+
+</body>
+</html>
